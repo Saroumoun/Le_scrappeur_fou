@@ -1,30 +1,48 @@
 require 'rubygems'
 require 'nokogiri'
 require 'open-uri'
-   
-page = Nokogiri::HTML(open("https://coinmarketcap.com/all/views/all/"))   
 
+def get_page
+	page = Nokogiri::HTML(open("https://coinmarketcap.com/all/views/all/"))
+	return page
+end 
 
-symbols = page.xpath('//*[@class="text-left col-symbol"]')
-symbols_array = []
-symbols.each do |symbol|
-	symbols_array << symbol.text
-end
-# print symbols_array
-puts '-' * 10
-puts symbols_array.size
-
-prices = page.xpath('//*[@class="price"]')
-prices_array = []
-prices.each do |price|
-	prices_array << price.text
+def scrapp_symbols
+	page = get_page
+	symbols = page.xpath('//*[@class="text-left col-symbol"]')
+	symbols_array = []
+	symbols.each do |symbol|
+		symbols_array << symbol.text
+	end
+	return symbols_array
 end
 
-# print prices_array
-puts '-' * 10
-puts prices_array.size
 
 
-a = symbols_array.zip(prices_array).to_h
-a.transform_values! { |v| v.delete'$'}
-print a
+def scrapp_prices
+	page = get_page
+	prices = page.xpath('//*[@class="price"]')
+	prices_array = []
+	prices.each do |price|
+		prices_array << price.text[1..-1].to_f
+	end
+	return prices_array
+end 
+
+
+
+def crypto_master
+	symbols_array = scrapp_symbols
+	prices_array = scrapp_prices
+	a = []
+
+	symbols_array.each_with_index do |k, v|		
+		a << {k => (prices_array)[v]}																										# sauvegarde du hash dans le tableau
+	end
+
+	print a
+	return a
+end
+
+crypto_master
+	
