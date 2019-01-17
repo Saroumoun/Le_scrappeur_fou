@@ -40,10 +40,10 @@ end
 def join_name_and_email
 	full_names_array = scrapp_names
 	emails_array = scrapp_emails
-	join_array = []
-	# (full_names_array.map { |v| v["email"] = ""; v } -- code facultatif)
-    full_names_array.map.with_index { |hash, i| hash["email"] = emails_array[i]; hash } 
-    #/ pour chaque nom et prénom de députés, on associe une adresse mail pour former un hash
+
+    full_names_array.map.with_index { |hash, i| hash["email"] = emails_array[i]} 
+    #/ pour chaque nom et prénom de députés, on associe une adresse mail.
+    #/ rajout dans un hash de l'email associé.
 	puts full_names_array
 	return full_names_array  
 end
