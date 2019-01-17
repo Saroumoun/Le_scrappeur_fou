@@ -39,7 +39,6 @@ def crypto_master
 	symbols_array.each_with_index do |k, v|		
 		a << {k => (prices_array)[v]}																										# sauvegarde du hash dans le tableau
 	end
-
 	print a
 	return a
 end

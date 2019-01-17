@@ -1,7 +1,11 @@
 require_relative '../lib/crypto'
 
-describe "the caesar_cipher method" do
-  it "should modify the words into caesar alphabet" do
-    expect(caesar_cipher("abc", 1)).to eq("bcd")
+describe "the crypto_master method" do
+  it "should return an array" do
+    expect(crypto_master).to be_instance_of Array
   end
+  it "should not be nil" do 
+  	expect(crypto_master).not_to be_nil
+  end
+
 end
