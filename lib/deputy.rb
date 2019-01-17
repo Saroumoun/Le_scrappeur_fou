@@ -37,7 +37,8 @@ def join_name_and_email
 
 	full_names_array.map { |v| v["email"] = ""; v }
     full_names_array.map.with_index { |hash, i| hash["email"] = emails_array[i]; hash }
-	puts full_names_array.size       
+	puts full_names_array
+	return full_names_array       
 end
 
 join_name_and_email

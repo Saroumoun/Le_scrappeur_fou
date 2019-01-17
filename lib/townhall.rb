@@ -16,7 +16,7 @@ def get_townhall_email(townhall_url)
 
 	a << {town[3] => email}
 	puts a
-
+	return a
 end
 
 def get_townhall_urls
